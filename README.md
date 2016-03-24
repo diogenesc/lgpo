@@ -61,13 +61,19 @@ Example of job /var/lib/lgpo/roles/general/first.job
 #o inner database the name and the version
 #of job, and will compare that on next run
 job_name='anything'
+
 #If you change the version, clients will see
 #that as an not executed job yet, but history
 #from previous versions will be see on client
 #inner database
 job_version='1.0'
+
+#this will be logged on client site on execution
+echo "Helo World"
+
 exit 0
 ```
+
 
 Client Dependency:
 shc compiler
@@ -87,24 +93,33 @@ Example:
 ```
 #daemon pid file
 pid_file=/var/run/lgpod.pid
+
 #pool were server request will be placed
 local_pool=/var/lib/lgpo/
+
 #if you chance job_log value, consider editing
 #logrotate file to reflect your changes
 jobs_log=/var/log/lgpo
+
 #remote rsync user
 rsync_user='lgpo'
+
 #remote rsync user password
 rsync_passwd='Secret'
+
 #if you set this to anything different of yes daemon
 #wont run
 enabled=yes
+
 #see roles
 roles='station general'
+
 #rsync server addres
 server_address='192.168.0.2'
+
 #sqlite database, this small db store ran jobs
 sqlitedb='/etc/lgpo.db'
+
 #frequency of new jobs check
 pool_time='15m'
 ```
