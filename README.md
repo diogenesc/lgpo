@@ -55,16 +55,16 @@ Every job will run once, to run a job again, you must change
 its version on server side.
 Example of job /var/lib/lgpo/roles/general/first.job 
 ```
-\#!/bin/bash
-\#This will be the name of you job, after a
-\#job is ran on the client they will record
-\#o inner database the name and the version
-\#of job, and will compare that on next run
+#!/bin/bash
+#This will be the name of you job, after a
+#job is ran on the client they will record
+#o inner database the name and the version
+#of job, and will compare that on next run
 job_name='anything'
-\#If you change the version, clients will see
-\#that as an not executed job yet, but history
-\#from previous versions will be see on client
-\#inner database
+#If you change the version, clients will see
+#that as an not executed job yet, but history
+#from previous versions will be see on client
+#inner database
 job_version='1.0'
 exit 0
 ```
@@ -85,27 +85,27 @@ Client Config:
 instalation may place a config file ate /etc/lgpo.conf
 Example:
 ```
-\#daemon pid file
+#daemon pid file
 pid_file=/var/run/lgpod.pid
-\#pool were server request will be placed
+#pool were server request will be placed
 local_pool=/var/lib/lgpo/
-\#if you chance job_log value, consider editing
-\#logrotate file to reflect your changes
+#if you chance job_log value, consider editing
+#logrotate file to reflect your changes
 jobs_log=/var/log/lgpo
-\#remote rsync user
+#remote rsync user
 rsync_user='lgpo'
-\#remote rsync user password
+#remote rsync user password
 rsync_passwd='Secret'
-\#if you set this to anything different of yes daemon
-\#wont run
+#if you set this to anything different of yes daemon
+#wont run
 enabled=yes
-\#see roles
+#see roles
 roles='station general'
-\#rsync server addres
+#rsync server addres
 server_address='192.168.0.2'
-\#sqlite database, this small db store ran jobs
+#sqlite database, this small db store ran jobs
 sqlitedb='/etc/lgpo.db'
-\#frequency of new jobs check
+#frequency of new jobs check
 pool_time='15m'
 ```
 
