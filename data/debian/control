@@ -1,0 +1,9 @@
+Package: lgpo
+Version: CURRENTVERSION
+Section: network
+Priority: optional
+Architecture: CURRENTARCH
+Depends: rsync ( >= 0.1 )
+Maintainer: Daniel Roque - 2006roque@gmail.com
+Description: A basic linux network management
+    software for automated actions.

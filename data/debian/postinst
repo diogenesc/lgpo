@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+#
+
+
+systemctl daemon-reload
+
+[ ! -e /etc/lgpo.conf ] && install -m 600 -g root -o root /usr/share/lgpo/samples/lgpo.conf /etc/lgpo.conf
+
+exit 0
+
