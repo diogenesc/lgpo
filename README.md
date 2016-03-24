@@ -3,7 +3,7 @@ Linux Group Policy
 
 This is a simple implementation of a basic system
 where administrator may send administrative jobs to
-a network scpecific netwokrk
+a scpecific network
 
 
 It works as follow on server you have a rsync
@@ -38,9 +38,10 @@ Roles are folders inside the folder roles can be aniyhing
 you wanna name like: general, frontoffice, backoffice,
 servers, gateway etc... on client side you gonna point that.
 
+Jobs:
 Inside roles you will create scripts that will run on
-clientes, you need 3 things to scripts be recognized
-by clients as valid.
+clientes, you need 3 things on scripts to be recognized
+by clients as valid job.
 
 script mode must be 500
 script name must have extension .job
@@ -50,8 +51,7 @@ inside script must have 2 variables
 
 Every job will run once, to run a job again, you must change
 its version on server side.
-Example:
-cat /var/lib/lgpo/roles/general/first.job 
+Example of job /var/lib/lgpo/roles/general/first.job 
 #!/bin/bash
 #
 #
@@ -75,7 +75,9 @@ exit 0
 
 
 Client Dependency:
-    you need shc compiler
+    shc compiler
+    sqlite3 database
+    rsync sincronization software
 
 
 Client instalation:
@@ -88,18 +90,28 @@ Client Config:
 instalation may place a config file ate /etc/lgpo.conf
 Example:
 
+# daemon pid file
 pid_file=/var/run/lgpod.pid
+# pool were server request will be placed
 local_pool=/var/lib/lgpo/
 # if you chance job_log value, consider editing
 # logrotate file to reflect your changes
 jobs_log=/var/log/lgpo
+# remote rsync user
 rsync_user='lgpo'
+# remote rsync user password
 rsync_passwd='Secret'
+# if you set this to anything different of yes daemon
+# wont run
 enabled=yes
+# see roles
 roles='station general'
+# rsync server addres
 server_address='192.168.0.2'
+# sqlite database, this small db store ran jobs
 sqlitedb='/etc/lgpo.db'
-pool_time='1m'
+# frequency of new jobs check
+pool_time='15m'
 
 
 
