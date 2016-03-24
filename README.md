@@ -1,4 +1,4 @@
- #lgpo
+# LGPO
 Linux Group Policy
 
 This is a simple implementation of a basic system
@@ -52,12 +52,7 @@ inside script must have 2 variables
 Every job will run once, to run a job again, you must change
 its version on server side.
 Example of job /var/lib/lgpo/roles/general/first.job 
-#!/bin/bash
-#
-#
-#
-#
-
+ #!/bin/bash
  #This will be the name of you job, after a
  #job is ran on the client they will record
  #o inner database the name and the version
