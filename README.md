@@ -12,11 +12,11 @@ repository at /var/lib/lgpo called lgpo
 
 Server Config:
 Example of rsync server conf /etc/rsyncd.conf
-lock file = /var/run/rsync.lock
-log file = /var/log/rsyncd.log
-pid file = /var/run/rsyncd.pid
+	lock file = /var/run/rsync.lock
+	log file = /var/log/rsyncd.log
+	pid file = /var/run/rsyncd.pid
 
-[lgpo]
+	[lgpo]
     path = /var/lib/lgpo
     comment = Linux Group Policys
     uid = root
@@ -29,7 +29,7 @@ pid file = /var/run/rsyncd.pid
 
 Rsync password file /etc/rsyncd.secrets add
 the line below
-lgpo:Secret
+	lgpo:Secret
 
 
 Roles:
@@ -58,16 +58,15 @@ Example of job /var/lib/lgpo/roles/general/first.job
     #job is ran on the client they will record
     #o inner database the name and the version
     #of job, and will compare that on next run
-job_name='anything'
+	job_name='anything'
 
     #If you change the version, clients will see
     #that as an not executed job yet, but history
     #from previous versions will be see on client
     #inner database
-job_version='1.0'
+	job_version='1.0'
 
-
-exit 0
+	exit 0
 
 
 Client Dependency:
@@ -87,27 +86,27 @@ instalation may place a config file ate /etc/lgpo.conf
 Example:
 
     #aemon pid file
-pid_file=/var/run/lgpod.pid
+	pid_file=/var/run/lgpod.pid
     #pool were server request will be placed
-local_pool=/var/lib/lgpo/
+	local_pool=/var/lib/lgpo/
     #if you chance job_log value, consider editing
     #logrotate file to reflect your changes
-jobs_log=/var/log/lgpo
+	jobs_log=/var/log/lgpo
     #remote rsync user
-rsync_user='lgpo'
+	rsync_user='lgpo'
     #remote rsync user password
-rsync_passwd='Secret'
+	rsync_passwd='Secret'
     #if you set this to anything different of yes daemon
     #wont run
-enabled=yes
+	enabled=yes
     #see roles
-roles='station general'
+	roles='station general'
     #rsync server addres
-server_address='192.168.0.2'
+	server_address='192.168.0.2'
     #sqlite database, this small db store ran jobs
-sqlitedb='/etc/lgpo.db'
+	sqlitedb='/etc/lgpo.db'
     #frequency of new jobs check
-pool_time='15m'
+	pool_time='15m'
 
 
 
