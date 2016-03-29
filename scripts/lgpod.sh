@@ -29,7 +29,7 @@
 
 conf_file='/etc/lgpo.conf'
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/X11R6/bin/:/usr/games"
-export version=0.1
+export version=0.2
 export script_path=/usr/sbin/lgpd
 export log_cmd="/usr/bin/logger -t ${script_path} -i -"
 
@@ -48,7 +48,9 @@ debug(){
 }
 
 # make a trap for sinal sent by kill command
-trap "die 0 'lgpod ended'" INT TERM EXIT QUIT KILL STOP PWR SYS
+trap "die 2 'lgpod ended keyboard interruption'" INT
+trap "die 9 'lgpod ended with KILL signal'" KILL
+trap "die 17 'lgpod ended on STOP or QUIT'" QUIT STOP
 
 # check if script was run by root
 [ "$(whoami)" != root ] && die 1 "this script must be run by root"

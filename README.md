@@ -1,5 +1,5 @@
-# LGPO
-Linux Group Policy
+## LGPO
+###Linux Group Policy
 
 This is a simple implementation of a basic system
 where administrator may send administrative jobs to
@@ -10,7 +10,7 @@ It works as follow on server you have a rsync
 repository at /var/lib/lgpo called lgpo
 
 
-Server Config:
+###Server Config:
 Example of rsync server conf /etc/rsyncd.conf
 ```
 lock file = /var/run/rsync.lock
@@ -30,27 +30,28 @@ hosts allow = 192.168.0.0/255.255.255.0
 
 Rsync password file /etc/rsyncd.secrets add
 the line below
+```
 lgpo:Secret
+```
 
-
-Roles:
+###Roles:
 inside /var/lib/lgpo or anywere you decided to place it
 create a folder called roles.
 Roles are folders inside the folder roles can be aniyhing
 you wanna name like: general, frontoffice, backoffice,
 servers, gateway etc... on client side you gonna point that.
 
-Jobs:
+###Jobs:
 Inside roles you will create scripts that will run on
 clientes, you need 3 things on scripts to be recognized
 by clients as valid job.
-
+```
 - script mode must be 500
 - script name must have extension .job
 - inside script must have 2 variables
-job_name='something'
-job_version='today'
-
+--job_name='something'
+--job_version='today'
+```
 Every job will run once, to run a job again, you must change
 its version on server side.
 Example of job /var/lib/lgpo/roles/general/first.job 
@@ -75,19 +76,19 @@ exit 0
 ```
 
 
-Client Dependency:
+###Client Dependency:
 shc compiler
 sqlite3 database
 rsync sincronization software
 
 
-Client instalation:
+###Client instalation:
 On server you dont need to install lgpo just rsync
 on clients clone repository make install on debian
 systems I recomend make debian then dpkg -i *.deb.
 
 
-Client Config:
+###Client Config:
 instalation may place a config file ate /etc/lgpo.conf
 Example:
 ```
@@ -126,3 +127,5 @@ pool_time='15m'
 
 
 Good Luck!
+
+by Daniel Roque
