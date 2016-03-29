@@ -29,7 +29,7 @@
 
 conf_file='/etc/lgpo.conf'
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/X11R6/bin/:/usr/games"
-export version=0.2
+export version=0.3
 export script_path=/usr/sbin/lgpd
 export log_cmd="/usr/bin/logger -t ${script_path} -i -"
 
@@ -103,12 +103,14 @@ runjob(){
 				if [ -x "${1}" ]
 				then
 					script_name=$(basename "${1}")
+					
+					insert_job="INSERT INTO jobs(name,role,version,date,script) VALUES ('${job_name}','${role}','${job_version}','$(date)','${script_name}')"
+					sqlite3 "${sqlitedb}" "${insert_job}"
+					
 					mkdir -p ${jobs_log}
 					echo "############# $(date) JOB STARTED" >>${jobs_log}/${script_name}
 					${1} 2>&1 >>${jobs_log}/${script_name}
 					echo "############# $(date) JOB ENDED " >>${jobs_log}/${script_name}
-					insert_job="INSERT INTO jobs(name,role,version,date,script) VALUES ('${job_name}','${role}','${job_version}','$(date)','${script_name}')"
-					sqlite3 "${sqlitedb}" "${insert_job}"
 				else
 					debug "wrong permissions, skipping job ${1}"
 				fi
